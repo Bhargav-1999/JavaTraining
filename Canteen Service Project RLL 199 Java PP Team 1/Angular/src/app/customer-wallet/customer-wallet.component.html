@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title></title>
+        <style>
+            .table{
+                position: absolute;
+                z-index: 2;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 60%; 
+                border-collapse: collapse;
+                border-spacing: 0;
+                box-shadow: 0 2px 15px rgba(12, 12, 12, 0.7);
+                border-radius: 12px 12px 0 0;
+                overflow: hidden;
+
+            }
+            tr th{
+                background-color: rgb(7, 6, 17);
+                color: #fbaf32;
+                text-align: center;
+                font-weight: bold;
+                padding-top: 10px;
+                padding-bottom: 10px;
+             }
+             td{
+                 padding: 15px 20px;
+                 text-align: center;
+                 color: white;
+             }
+        </style>
+    </head>
+    <body>
+<p>Wallet Type :</p>
+<input type="text" name="wal_source" [(ngModel)]="wal_source" /> 
+<br/><br/>
+<input type="button" value="Search" (click)="search()" />
+<table border="3" align="center">
+    <tr>
+        <th>Wallet Id</th>
+        <th>customer Id</th>
+        <th>Wallet Amount</th>
+        <th>Wallet source</th>
+        
+    </tr>
+    <tr>
+    <td >{{(walletarr | async)?.wal_id}}</td>
+    <td >{{(walletarr | async)?.cus_id}}</td>
+    <td >{{(walletarr| async)?.wal_amount}}</td>
+    <td >{{(walletarr | async)?.wal_source}}</td>
+    </tr>
+</table>
+    </body>
+    </html>

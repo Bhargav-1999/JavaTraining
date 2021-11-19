@@ -1,0 +1,143 @@
+CREATE TABLE Customer 
+   (	CUS_ID VARCHAR2(10) NOT NULL , 
+	CUS_NAME VARCHAR2(50) NOT NULL , 
+	CUS_PHN_NO VARCHAR2(50) NOT NULL , 
+	CUS_USERNAME VARCHAR2(50) NOT NULL , 
+	CUS_PASSWORD VARCHAR2(50 ) NOT NULL , 
+	CUS_EMAIL VARCHAR2(50 ) NOT NULL , 
+	PRIMARY KEY (CUS_ID),
+	CONSTRAINT CUS_PHN_NO_UNQ UNIQUE (CUS_PHN_NO), 
+	CONSTRAINT CUS_USERNAME_UNQ UNIQUE (CUS_USERNAME)
+   );
+
+insert into customer values('C001','Bhargav Modupalli','9483939019','bhargav','bhargav','bhargavmodupalli@gmail.com');
+insert into customer values('C002','Venkata Sai Manoj Indla','9182162725','manoj','manoj','venkatasaimanojindla@gmail.com');
+insert into customer values('C003','Juturu Naga Chaitanya','9866265629','chaitanya','chaitanya','juturunagachaitanyakumar@gmail.com');
+insert into customer values('C004','Mekala Mohan Aditya','79010 10301','aditya','aditya','mohanadityasivaseshumekala@gmail.com');
+insert into customer values('C005','Vutukuri Rahul','8790834615','rahul','rahul','rahulvutukuri@gmail.com');
+insert into customer values('C006','Aavula Jayasree','7981086177','jayasree','jayasree','aavulajayasree@gmail.com');
+insert into customer values('C007','Gourisetty Bhanu Venkata Preethi','9014806693','preethi','preethi','gourisettybhanuvenkatapreethi@gmail.com');
+insert into customer values('C008','Namrata Galinde','7776879123','namrata','namrata','namratagalinde@gmail.com');
+insert into customer values('C009','kajal Maskar','9657442511','kajal','kajal','kajalmaskar@gmail.com');
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Create Table Menu
+(
+   MEN_ID Varchar2(10) NOT NULL,
+   MEN_ITEM varchar2(30) NOT NULL,
+   MEN_PRICE number(9,2) NOT NULL,
+   MEN_CALORIES number(9,2) NOT NULL,
+   MEN_SPECIALITY varchar(50) NOT NULL,
+   PRIMARY KEY (MEN_ID) 
+);
+
+insert into menu values('M001','Chicken Biryani',250,400.89,'Non-Veg');
+insert into menu values('M002','Chicken 65',200,300.45,'Non-Veg');
+insert into menu values('M003','Chicken Andhra Dry',270,600.34,'Non-Veg');
+insert into menu values('M004','Chicken Kebab',150,450.12,'Non-Veg');
+insert into menu values('M005','Butter Chicken',300,700.76,'Non-Veg');
+insert into menu values('M006','Paneer Butter Maasala',180,200.90,'Veg');
+insert into menu values('M007','Baby Corn Manchurian',170,267.01,'Veg');
+insert into menu values('M008','Mushroom Pepper Dry',140,467.08,'Veg');
+insert into menu values('M009','Schezwan Noodles',180,300.23,'Veg');
+insert into menu values('M010','Egg fried Rice',120,341.20,'Non-Veg');
+insert into menu values('M011','PEPSI',60,300.11,'Beverages');
+insert into menu values('M012','Coco-Cola',100,400.28,'Beverages');
+insert into menu values('M013','Sprite',80,200.67,'Beverages');
+insert into menu values('M014','Belgium Dark Chocolate Shake',180,700.40,'Thick-Shakes');
+insert into menu values('M015','Creamy Oreo Shake',220,870.02,'Thick-Shakes');
+insert into menu values('M016','Dry Fruit Delight',380,1021.81,'Dessert');
+insert into menu values('M017','Nuts Overload',190,591.09,'Dessert');
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table Vendor(
+ VEN_ID varchar2(10) NOT NULL,
+ VEN_NAME varchar(50) NOT NULL,
+ VEN_PHONE varchar(40) NOT NULL,
+ VEN_USERNAME varchar(40) NOT NULL,
+ VEN_PASSWORD varchar(30) NOT NULL,
+ VEN_EMAIL varchar(50) NOT NULL,
+ PRIMARY KEY (VEN_ID)
+);
+
+insert into vendor values('V001','Anushree','9834092132','Anusree','anusree@123','anusree@gmail.com');
+insert into vendor values('V002','Bala Residency','9674091132','Bala','Bala@123','balaresidency@gmail.com');
+insert into vendor values('V003','Madurai Idly','9134099132','Murugan','murugan@123','murugan@gmail.com');
+insert into vendor values('V004','Nagarjunas','7634092132','Nagaraj','nagraj@123','nagaraj@gmail.com');
+insert into vendor values('V005','KFC','8834092199','Kentucky','KFC@123','friedkitchen@gmail.com');
+insert into vendor values('V006','Dominos','9006710781','Dominos','Dom@123','dominos@gmail.com');
+insert into vendor values('V007','Pizza Hut','7353909510','Pizza','Hut@123','pizzahut@gmail.com');
+insert into vendor values('V008','Subbaiha gari Hotel','6307190284','Subbaiha','Hotel@123','subbaihahotel@gmail.com');
+insert into vendor values('V009','Meghanas','9834092132','Meghana','secret@123','meghanas@gmail.com');
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE Orders (
+  ORD_ID varchar2(10) NOT NULL,
+  CUS_ID varchar2(10) references Customer(CUS_ID) NOT NULL,
+  VEN_ID varchar2(10) references Vendor(VEN_ID) NOT NULL,
+  WAL_SOURCE varchar2(30) NOT NULL
+  constraint chk_Orders_WAL_SOURCE check(WAL_SOURCE in('PAYTM','GPAY','PHONE_PE','DEBIT_CARD','CREDIT_CARD','AMAZON_PAY')),
+  MEN_ID varchar2(10) references Menu(MEN_ID) NOT NULL,
+  ORD_DATE date default sysdate,
+  ORD_QUANTITY number NOT NULL,
+  ORD_BILLAMOUNT number(9,2) default NULL,
+  ORD_STATUS varchar2(10)
+  constraint chk_Orders_ORD_STATUS check(ORD_STATUS in('ACCEPTED','DENIED','PENDING')),
+  ORD_COMMENTS varchar2(50) default NULL,
+  PRIMARY KEY (ORD_ID)
+);
+
+insert into orders values('O001','C001','V001','GPAY','M001',DEFAULT,1,345.67,'PENDING','Extra Masala');
+insert into orders values('O002','C002','V002','PAYTM','M002',DEFAULT,2,561.08,'PENDING','Extra Spice');
+insert into orders values('O003','C003','V003','PHONE_PE','M003',DEFAULT,1,236.37,'PENDING','No Deep Fry');
+insert into orders values('O004','C004','V004','CREDIT_CARD','M004',DEFAULT,5,2422.89,'ACCEPTED','Punch on Masala on top');
+insert into orders values('O005','C005','V005','GPAY','M005',DEFAULT,3,1001.20,'DENIED','Extra Butter');
+insert into orders values('O006','C006','V006','AMAZON_PAY','M006',DEFAULT,7,3490.12,'PENDING','Extra Paneer');
+insert into orders values('O007','C007','V007','PAYTM','M007',DEFAULT,1,336.78,'ACCEPTED','Corn must be Crunchy');
+insert into orders values('O008','C008','V008','CREDIT_CARD','M008',DEFAULT,2,200.19,'DENIED','Extra Pepper on Top');
+insert into orders values('O009','C009','V009','DEBIT_CARD','M009',DEFAULT,6,1200.71,'ACCEPTED','Extra Spice');
+insert into orders values('O010','C001','V003','GPAY','M010',DEFAULT,1,345.67,'PENDING','Extra Masala');
+insert into orders values('O011','C002','V005','PAYTM','M011',DEFAULT,2,561.08,'DENIED','Extra Spice');
+insert into orders values('O012','C003','V003','PHONE_PE','M012',DEFAULT,1,236.37,'PENDING','No Deep Fry');
+insert into orders values('O013','C004','V004','CREDIT_CARD','M013',DEFAULT,5,2422.89,'ACCEPTED','Punch on Masala on top');
+insert into orders values('O014','C005','V005','GPAY','M014',DEFAULT,3,1001.20,'DENIED','Extra Butter');
+insert into orders values('O015','C006','V006','AMAZON_PAY','M015',DEFAULT,7,3490.12,'PENDING','Extra Paneer');
+insert into orders values('O016','C007','V008','PAYTM','M016',DEFAULT,1,336.78,'ACCEPTED','Corn must be Crunchy');
+insert into orders values('O017','C008','V008','CREDIT_CARD','M017',DEFAULT,2,200.19,'DENIED','Extra Pepper on Top');
+insert into orders values('O018','C009','V009','DEBIT_CARD','M001',DEFAULT,6,1200.71,'ACCEPTED','Extra Spice');
+insert into orders values('O019','C001','V009','DEBIT_CARD','M001',DEFAULT,6,1200.71,'ACCEPTED','Extra Spice');
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE Wallet (
+  CUS_ID varchar2(10) references Customer(CUS_ID) NOT NULL,
+  WAL_ID varchar2(10) NOT NULL,
+  WAL_AMOUNT number(9,2) NOT NULL,
+  WAL_SOURCE varchar2(20)
+  constraint chk_Wallet_WAL_SOURCE check(WAL_SOURCE in('PAYTM','GPAY','PHONE_PE','DEBIT_CARD','CREDIT_CARD','AMAZON_PAY')),
+  PRIMARY KEY (WAL_ID),
+  CONSTRAINT Wallet_unique UNIQUE(CUS_ID,WAL_SOURCE)
+);
+
+insert into wallet values('C001','W001',33901.89,'PAYTM');
+insert into wallet values('C001','W002',61700.50,'GPAY');
+insert into wallet values('C002','W003',45000.46,'GPAY');
+insert into wallet values('C004','W004',89100.23,'AMAZON_PAY');
+insert into wallet values('C002','W005',52900.10,'PHONE_PE');
+insert into wallet values('C003','W006',73500.90,'CREDIT_CARD');
+insert into wallet values('C004','W007',98100.45,'PHONE_PE');
+insert into wallet values('C003','W008',105610.66,'PAYTM');
+insert into wallet values('C005','W009',110050.01,'CREDIT_CARD');
+insert into wallet values('C006','W010',10050.01,'DEBIT_CARD');
+insert into wallet values('C007','W011',120050.01,'GPAY');
+insert into wallet values('C007','W012',20050.01,'AMAZON_PAY');
+insert into wallet values('C005','W013',44050.01,'PAYTM');
+insert into wallet values('C006','W014',66050.01,'GPAY');
+insert into wallet values('C008','W015',99050.01,'CREDIT_CARD');
+insert into wallet values('C009','W016',2050.01,'DEBIT_CARD');
+insert into wallet values('C008','W017',40050.01,'PHONE_PE');
+insert into wallet values('C009','W018',30050.01,'GPAY');
+insert into wallet values('C001','W019',51050.01,'CREDIT_CARD');
+insert into wallet values('C002','W020',30050.01,'AMAZON_PAY');

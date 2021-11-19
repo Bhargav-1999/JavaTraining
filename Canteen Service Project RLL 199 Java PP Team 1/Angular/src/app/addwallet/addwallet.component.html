@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <style>
+html, body { height: 100%; }
+body {
+  background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+}
+
+
+
+      table{
+                border: 4px solid black;
+            }
+            tr th{
+               
+                border: 4px solid black;
+                text-align: center;
+               
+                padding-top: 12px;
+                padding-bottom: 10px;
+             }
+             th{
+                 font-size:20px;
+             }
+             td{
+                 font-weight:bold;
+                 padding: 10px 20px;
+                 border: 4px solid black;
+                 text-align: center;
+                 color: #000000;
+             }
+      .full-page{
+            height:713px;
+            width: 1520px;
+            font-size: 30px;
+            text-align: center;
+            color:#ffffff;
+            background: #015871;
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(/assets/Images/Home5.jpeg);
+            background-position: center; 
+            background-size: cover;
+            position: absolute;
+            font-family: sans-serif;
+             }
+
+        </style>
+    </head>
+<body>
+<div class="full-page">
+    
+    
+    <p>ADD WALLET HERE...</p>
+        <br/> 
+        <form id="Addwallet">
+        <table border="4" align="center">
+            
+           
+    
+            <tr>
+                <th>Customer ID:</th>
+                <td> <input type="text" name="addwal.cus_id" [(ngModel)]="addwal.cus_id" /></td>
+                </tr>
+                <tr>
+                    <th>Wallet Source:</th>
+                    <td> 
+                        <select [(ngModel)]="addwal.wal_source" name="wal_source">
+                            <option value="" disabled selected>Select Payment Method</option>
+                            
+                        
+                                        <option >PAYTM</option>
+                                        <option>GPAY</option>
+                                        <option>PHONE_PE</option>
+                                        <option>DEBIT_CARD</option>
+                                        <option>CREDIT_CARD</option>
+                                        <option>AMAZON_PAY</option>
+                                      
+                                </select> 
+                    </td>
+                </tr>
+          
+                <tr>
+                    <th>Amount:</th>
+                    <td> <input type="number" name="addwal.wal_amount" [(ngModel)]="addwal.wal_amount" /> </td>
+                </tr>
+               
+            <tr>
+            <th colspan="3"><input type="button" value="Add Wallet" (click)="addwallet()" /></th>
+            </tr>
+            </table>
+        </form>
+        {{msg}}
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <style>
+html, body { height: 100%; }
+body {
+  background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+}
+
+
+      table{
+                border: 4px solid black;
+            }
+            tr th{
+               
+                border: 4px solid black;
+                text-align: center;
+               
+                padding-top: 12px;
+                padding-bottom: 10px;
+             }
+             th{
+                 font-size:20px;
+             }
+             td{
+                 font-weight:bold;
+                 padding: 10px 20px;
+                 border: 4px solid black;
+                 text-align: center;
+                 color: #000000;
+             }
+      .full-page{
+            height:713px;
+            width: 1520px;
+            font-size: 30px;
+            text-align: center;
+            color:#ffffff;
+            background: #015871;
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(/assets/Images/Home4.jpeg);
+            background-position: center; 
+            background-size: cover;
+            position: absolute;
+            font-family: sans-serif;
+             }
+
+        </style>
+    </head>
+<body>
+<div class="full-page">
+    
+    
+    <p>REGISTER</p>
+        <br/> 
+        <form id="Addcustomer">
+        <table border="4" align="center">
+           
+    
+            <tr>
+                <th>Name:</th>
+                <td><input type="text" name="addcus.cus_Name" [(ngModel)]="addcus.cus_Name" /></td>
+                </tr>
+                <tr>
+                    <th>Phone No:</th>
+                    <td> <input type="text" name="addcus.cus_Phn_No" [(ngModel)]="addcus.cus_Phn_No" /> </td>
+                </tr>
+                <tr>
+                    <th>UserName:</th>
+                    <td> <input type="text" name="addcus.cus_Username" [(ngModel)]="addcus.cus_Username" /> </td>
+                </tr>
+                <tr>
+                    <th>Password:</th>
+                    <td><input type="text" name="addcus.cus_Password" [(ngModel)]="addcus.cus_Password" /></td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td> <input type="text" name="addcus.cus_Email" [(ngModel)]="addcus.cus_Email" /></td>
+                    </tr>
+      
+            <tr>
+            <th colspan="3"><input type="button" value="Addcustomer" (click)="addcustomer()" />
+                &nbsp;&nbsp;
+                <a href="/CustomerLogin"><input type="button" value="Login" /></a>
+            </th>
+            
+            </tr>
+            </table>
+        </form>
+        {{msg}}
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <style>
+html, body { height: 100%; }
+body {
+background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)),url(/assets/Images/Home4.jpg);
+background-size: cover;
+background-position: center;
+
+background-repeat: no-repeat;
+            }
+
+
+      table{
+                border: 4px solid black;
+            }
+            tr th{
+               
+                border: 4px solid black;
+                text-align: center;
+               
+                padding-top: 12px;
+                padding-bottom: 10px;
+             }
+             th{
+                 font-size:20px;
+             }
+             td{
+                 font-weight:bold;
+                 padding: 10px 20px;
+                 border: 4px solid black;
+                 text-align: center;
+                 color: #000000;
+             }
+      .full-page{
+            height:713px;
+            width: 1520px;
+            font-size: 30px;
+            text-align: center;
+            color:#ffffff;
+            background: #015871;
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(/assets/Images/Home4.jpeg);
+            background-position: center; 
+            background-size: cover;
+            position: absolute;
+            font-family: sans-serif;
+             }
+
+        </style>
+    </head>
+<body>
+<div class="full-page">
+    
+    
+    <p>PLEASE ADD UR DETAILS</p>
+        <br/> 
+        <form id="placeOrder">
+        <table border="4" align="center">
+            
+    
+            <tr>
+                <th>Customer ID:</th>
+                <td><input type="text" name="orderdetails.cus_id" [(ngModel)]="orderdetails.cus_id" /></td>
+                </tr>
+                <tr>
+                    <th>Select Menu Item:</th>
+                    <td><select [(ngModel)]="orderdetails.men_ID" name="men_ID" (change)="showAmount()">
+        <option *ngFor="let e of menu | async" value={{e.men_ID}}>
+            {{e.men_ITEM}}
+        </option>
+    </select></td>
+                </tr>
+                <tr>
+                    <th>Price:</th>
+                    <td><input type="number" name="price" [(ngModel)]="price" readonly /></td>
+                </tr>
+                <tr>
+                    <th>Select Restaurant:</th>
+                    <td> <select [(ngModel)]="orderdetails.ven_ID" name="ven_ID">
+        <option *ngFor="let f of vendor | async" value={{f.ven_ID}}>
+            {{f.ven_NAME}}
+        </option>
+    </select></td>
+                </tr>
+                <tr>
+                    <th>Order Date:</th>
+                    <td><input type="date" min="{{todayDate}}" max="{{todayDate1}}" name="orderdetails.ord_date" [(ngModel)]="orderdetails.ord_date" /></td>
+                    </tr>
+                 <tr>
+                    <th>Order Quantity:</th>
+                    <td><input type="number" [(ngModel)]="orderdetails.ord_quantity" name="ord_quantity" /></td>
+                    </tr>
+                 <tr>
+                    <th>Select Wallet Type:</th>
+                    <td><select [(ngModel)]="orderdetails.wal_source" name="wal_source">
+        <option *ngFor="let f of wallet | async" value={{f.wal_source}}>
+            {{f.wal_source}}
+        </option>
+    </select> </td>
+                    </tr>
+                   <tr>
+                    <th>Order Comments:</th>
+                    <td><input type="text" [(ngModel)]="orderdetails.ord_comments" name="ord_comments" /></td>
+                    </tr>
+                 <tr>
+            <tr>
+            <th colspan="3"> <input type="button" value="PlaceOrder" (click)="placeOrder()"/>
+                &nbsp;&nbsp;
+                <a href="/PlaceOrder"><input type="button" value="Reset" /></a>
+            </th>
+            </tr>
+            </table>
+        </form>
+        {{msg}}
+   </div>
+
+</body>
+</html>

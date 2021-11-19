@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title></title>
+        <style>
+            .table{
+                position: absolute;
+                z-index: 2;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 60%; 
+                border-collapse: collapse;
+                border-spacing: 0;
+                box-shadow: 0 2px 15px rgba(12, 12, 12, 0.7);
+                border-radius: 12px 12px 0 0;
+                overflow: hidden;
+
+            }
+            tr th{
+                background-color: rgb(7, 6, 17);
+                color: tomato;
+                text-align: center;
+                font-weight: bold;
+                padding-top: 10px;
+                padding-bottom: 10px;
+             }
+             td{
+                 padding: 15px 20px;
+                 text-align: center;
+                 color: white;
+             }
+        </style>
+    </head>
+    <body>
+        Menu Id : 
+        <input type="text" name="umid" [(ngModel)]="umid" /> 
+        <br/><br/>
+        <input type="button" value="Search" (click)="search()" />
+<table border="3" align="center">
+    <tr>
+        <th>Menu ID</th>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Calories</th>
+        <th>Speciality</th>
+        
+    </tr>
+    <tr>
+    <td >{{(menu | async)?.men_ID}}</td>
+    <td >{{(menu | async)?.men_ITEM}}</td>
+    <td >{{(menu | async)?.men_PRICE}}</td>
+    <td >{{(menu | async)?.men_CALORIES}}</td>
+    <td >{{(menu | async)?.men_SPECIALITY}}</td>
+    </tr>
+</table>
+    </body>
+    </html>

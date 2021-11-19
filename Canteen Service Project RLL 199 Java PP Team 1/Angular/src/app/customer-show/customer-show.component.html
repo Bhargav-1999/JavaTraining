@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>customer-show</title>
+        <style>
+            body {
+background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)),url(/assets/Images/Home2.jpg);
+background-size: cover;
+background-position: center;
+
+background-repeat: no-repeat;
+            }
+            .table{
+                position: absolute;
+                z-index: 2;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 60%; 
+                border-collapse: collapse;
+                border-spacing: 0;
+                box-shadow: 0 2px 15px rgba(12, 12, 12, 0.7);
+                border-radius: 12px 12px 0 0;
+                overflow: hidden;
+
+            }
+            tr th{
+                background-color: rgb(7, 6, 17);
+                color: #fbaf32;
+                text-align: center;
+                font-weight: bold;
+                padding-top: 10px;
+                padding-bottom: 10px;
+             }
+             td{
+                 padding: 15px 20px;
+                 text-align: center;
+                 color: white;
+             }
+        </style>
+    </head>
+    <body>
+    <table  border="3" align="center" >
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>PhoneNo</th>
+            <th>Email</th>
+        </tr>
+        <tr *ngFor="let c of customers | async">
+            <td>{{c.cus_id}} </td>
+            <td>{{c.cus_Name}} </td>
+            <td>{{c.cus_Phn_No}} </td>
+            <td>{{c.cus_Email}} </td>
+        </tr>
+    </table>
+</body>
+</html>

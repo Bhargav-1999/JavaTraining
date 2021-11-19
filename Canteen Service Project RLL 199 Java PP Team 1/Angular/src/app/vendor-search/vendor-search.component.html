@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title></title>
+        <style>
+            .table{
+                position: absolute;
+                z-index: 2;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 60%; 
+                border-collapse: collapse;
+                border-spacing: 0;
+                box-shadow: 0 2px 15px rgba(12, 12, 12, 0.7);
+                border-radius: 12px 12px 0 0;
+                overflow: hidden;
+
+            }
+            tr th{
+                background-color: rgb(7, 6, 17);
+                color: rgb(71, 255, 71);
+                text-align: center;
+                font-weight: bold;
+                padding-top: 10px;
+                padding-bottom: 10px;
+             }
+             td{
+                 padding: 15px 20px;
+                 text-align: center;
+                 color: white;
+             }
+        </style>
+    </head>
+    <body>
+<table border="3" align="center">
+    <tr>
+        <th>Vendor Name</th>
+        <th>Vendor ID</th>
+        <th>Phone</th>
+        <th>UserName</th>
+        <th>Email</th>
+        
+    </tr>
+    <tr>
+    <td >{{(vendor | async)?.ven_NAME}}</td>
+    <td >{{(vendor | async)?.ven_ID}}</td>
+    <td >{{(vendor | async)?.ven_PHONE}}</td>
+    <td >{{(vendor | async)?.ven_USERNAME}}</td>
+    <td >{{(vendor | async)?.ven_EMAIL}}</td>
+    </tr>
+</table>
+    </body>
+    </html>

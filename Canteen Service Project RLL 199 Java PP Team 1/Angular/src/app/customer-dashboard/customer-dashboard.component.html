@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>
+        </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <style>
+       
+         *
+         {
+             padding: 0;
+             margin:0;
+         }
+    
+         body {
+background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)),url(/assets/Images/Home2.jpg);
+background-size: cover;
+background-position: center;
+box-sizing: border-box;
+position: absolute;
+background-repeat: no-repeat;
+font-family: sans-serif;
+height:713px;
+ width: 1520px;
+font-size: 20px;
+text-align: center;
+color:#ffffff;
+position: absolute;
+height:713px;
+}
+         .menu-bar{
+             background:rgb(0,100,0);
+             text-align:center;
+         }
+         .menu-bar ul{
+             display:inline-flex;
+             list-style: none;
+             color:#fff;
+         }
+         .menu-bar ul li{
+             width:120px;
+             margin:15px;
+             padding:15px;
+         }
+         .menu-bar ul li a{
+             text-decoration: none;
+             color:#fff;
+         }
+         .active, .menu-bar ul li:hover
+         {
+           background:#2bab0d;
+           border-radius: 3px;
+         }
+         .menu-bar .fa
+         {
+             margin-right:8px;
+         }
+         .sub-menu-1
+         {
+             display:none;
+         }
+         .menu-bar ul li:hover .sub-menu-1
+         {
+             display: block;
+             position:absolute;
+             background:rgb(0,100,0);
+             margin-top: 15px;
+             margin-left: -15px;
+         }
+         .menu-bar ul li:hover .sub-menu-1 ul
+         {
+           display:block;
+           margin:10px;
+         }
+         .menu-bar ul li:hover .sub-menu-1 ul li
+         {
+             width:150px;
+             padding:10px;
+             border-bottom:  1px dotted #fff;
+             background:transparent;
+             border-radius: 0;
+             text-align: left;
+         }
+         .menu-bar ul li:hover .sub-menu-1 ul li:last-child
+         {
+             border-bottom: none;
+         }
+         .menu-bar ul li:hover .sub-menu-1 ul li a:hover
+         {
+             color:#b2ff00;
+         }
+         .fa-angle-right
+         {
+             float:right;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="menu-bar">
+        <ul>
+        <li><a href="#"><i class="fas fa-user-shield"></i>Home</a>
+        <li class="active"><a href="/CustomerDashboard"><i class="fas fa-user-shield"></i>Customer</a>
+        <div class="sub-menu-1">
+            <ul>
+                <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customer-show']}}]">Customer Details<i class="fab fa-user-angle-right"></i></a></li>
+                <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customer-search']}}]">Customer Info<i class="fab fa-user-angle-right"></i></a></li>
+            </ul>
+        </div>
+        
+        </li>
+        <li><a href="/CustomerDashboard"><i class="fab fa-first-order-alt"></i>Orders</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['placeorder']}}]">Place Order<i class="fab fa-first-angle-right"></i></a></li>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customertotalorders']}}]">Total Orders<i class="fab fa-first-angle-right"></i></a></li>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customerpendingorders']}}]">Pending Orders<i class="fab fa-first-angle-right"></i></a></li>     
+                </ul>
+            </div>
+        </li>
+        <li><a href="/CustomerDashboard"><i class="fas fa-wallet"></i>Wallet</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customertotalwallets']}}]">Your Wallets<i class="fab fa-first-angle-right"></i></a></li>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['customerwallet']}}]">Find Wallet<i class="fab fa-first-angle-right"></i></a></li>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['addwallet']}}]">Add Wallet<i class="fab fa-first-angle-right"></i></a></li>     
+                </ul>
+            </div>
+        </li>
+        <li><a href="/CustomerDashboard"><i class="fas fa-bars"></i>Menu</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['menushow']}}]">Show Menu<i class="fab fa-first-angle-right"></i></a></li>
+                    <li><a [routerLink]="['/CustomerDashboard',{outlets: {'mphasis': ['menusearch']}}]">Search Menu<i class="fab fa-first-angle-right"></i></a></li>    
+                </ul>
+            </div>
+        </li>
+        </ul>
+    </div>
+    <router-outlet name="mphasis"></router-outlet>
+    </body>
+</html>
